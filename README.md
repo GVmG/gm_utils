@@ -10,6 +10,7 @@ A set of utility scripts for GameMaker Studio users, by Raechel V.
 - `RandomUtils.gml` contains functions to help with random/procedural number generation, including smooth 2D noise based on Gamemaker's default random generator and an implementation of a Linear Congruential Generator (with many default configurations).
 
 **Objective Ports:** 
+- `EventSystem.gml` includes a simple Event Listener system useable with just two functions, and supporting event priorities.
 - `ObjectiveAlarms.gml` implements Gamemaker's new TimeSource system as a struct/object that can be instantiated.
 - `ObjectiveLists.gml` creates a form of instantiable linked List in the form of a struct/object.
 - `Vec2.gml` offers a simple implementation of basic 2D Vector functions in an instantiable struct/object form.
