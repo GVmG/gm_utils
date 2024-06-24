@@ -14,6 +14,7 @@ A set of utility scripts for GameMaker Studio users, by Raechel V.
 - `ObjectiveAlarms.gml` implements Gamemaker's new TimeSource system as a struct/object that can be instantiated.
 - `ObjectiveLists.gml` creates a form of instantiable linked List in the form of a struct/object.
 - `Vec2.gml` offers a simple implementation of basic 2D Vector functions in an instantiable struct/object form.
+- `StateMachine.gml` implements a quick and simple Finite State Machine system.
 
 ### Post Scriptum
 I've been a Gamemaker user for over a decade now. I've started back in the 8.0 days, and have embarked in countless projects across the years. While I haven't published a lot of games, or even finished many, I've collected a lot of little scripts and utilities across the years that I often find myself rewriting on the fly on new projects, because I'll be honest, I'm not the most organized when it comes to my home projects: finding whichever the latest version of a utility script is, out of my 12 concurrent projects, is a daunting task my own hubris caused.
