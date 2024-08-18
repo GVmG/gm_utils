@@ -1,7 +1,7 @@
 /*
 		VARIOUS UTILITIES
 		by Raechel V.
-		version 2023.12
+		version 2024.8
 		
 		See https://github.com/GVmG/gm_utils for more info.
 		
@@ -75,4 +75,63 @@ function surface_expand(surface, right=0, down=0, left=0, up=0, bg=0xffffff, bga
 	surface_free(surface);
 	
 	return surf;
+}
+
+/// @func draw_text_on_path(ix, iy, text, text_scale, text_color, text_alpha, path, path_xscale=1, path_yscale=1, path_angle=0, text_follows_path_angle=true)
+/// @desc This function renders the given text along the given path.
+/// @arg {Real} ix the x coordinate at which to start drawing.
+/// @arg {Real} iy the y coordinate at which to start drawing.
+/// @arg {String} text the string you wish to draw.
+/// @arg {Real} text_scale the scale at which to draw the text.
+/// @arg {Constant.Colour} text_color the color of the text.
+/// @arg {Real} text_alpha the opacity of the text.
+/// @arg {Asset.GMPath} path the Path which the text will follow the shape of.
+/// @arg {Real} path_xscale the horizontal scale of the path.
+/// @arg {Real} path_yscale the vertical scale of the path.
+/// @arg {Real} path_angle the angle of the path.
+/// @arg {Bool} text_follows_path_direction whether the text should follow the direction of the path (true) or always face horizontally (false).
+function draw_text_on_path(ix, iy, text, text_scale, text_color, text_alpha, path, path_xscale=1, path_yscale=1, path_angle=0, text_follows_path_direction=true)
+{
+	if (text=="") return;
+	
+	var halign=draw_get_halign();
+	draw_set_halign(fa_center);
+	var valign=draw_get_valign();
+	draw_set_valign(fa_middle); //for best results
+	
+	var l=string_length(text);
+	var pangle=0, prev=0;
+	
+	for (var i=1; i<=l; i++) {
+		var c=string_char_at(text, i);
+		var prog=i/l;
+		
+		var px=path_get_x(path, prog)*path_xscale, py=path_get_y(path, prog)*path_yscale;
+		var ppx=path_get_x(path, prev)*path_xscale, ppy=path_get_y(path, prev)*path_yscale;
+		
+		if (path_angle!=0) {
+			var pdir=point_direction(0, 0, px, py);
+			var plen=sqrt(px*px+py*py);
+			px=lengthdir_x(plen, pdir+path_angle);
+			py=lengthdir_y(plen, pdir+path_angle);
+			
+			if (text_follows_path_direction) {
+				var ppdir=point_direction(0, 0, ppx, ppy);
+				var pplen=sqrt(ppx*ppx+ppy*ppy);
+				ppx=lengthdir_x(pplen, ppdir+path_angle);
+				ppy=lengthdir_y(pplen, ppdir+path_angle);
+			}
+		}
+		
+		if (text_follows_path_direction) {
+			pangle=point_direction(ppx, ppy, px, py);
+			prev=prog;
+		}
+		
+		draw_text_transformed_color(ix+px, iy+py, c, text_scale, text_scale, pangle, text_color,  text_color,  text_color,  text_color, 1);
+		
+	}
+	
+	draw_set_halign(halign); //reset alignmeent
+	draw_set_valign(valign);
 }
