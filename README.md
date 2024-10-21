@@ -8,6 +8,7 @@ A set of utility scripts for GameMaker Studio users, by Raechel V.
 - `_various.gml` contains any minor utility function that didn't fit in any other category.
 - `CurveUtils.gml` contains helper functions for interpolation and other related things.
 - `RandomUtils.gml` contains functions to help with random/procedural number generation, including smooth 2D noise based on Gamemaker's default random generator and an implementation of a Linear Congruential Generator (with many default configurations).
+- `VKUtils.gml` contains helper functions to deal with vk_* constants and other keyboard constants (currently only one function)
 
 **Objective Ports:** 
 - `EventSystem.gml` includes a simple Event Listener system useable with just two functions, and supporting event priorities.
