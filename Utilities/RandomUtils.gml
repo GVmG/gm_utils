@@ -1,7 +1,7 @@
 /*
 		RANDOM NUMBER GENERATION UTILITIES
 		by Raechel V.
-		version 2023.12
+		version 2025.5
 		
 		See https://github.com/GVmG/gm_utils for more info.
 */
@@ -72,6 +72,16 @@ function random_ext(n, smooth_function=___sf_linear) {
 	return lerp(a, b, smooth_function(i));
 }
 
+///returns a random number given the seed n, without advancing the rng. does not smooth between values.
+///@param {Real} n
+function random_seeded(n) {
+	var seed=random_get_seed();
+	random_set_seed(n);
+	var a=random(1);
+	random_set_seed(seed);
+	return a;
+}
+
 ///returns a random number given the seed n. This number is affected by other octaves of noise, generating brownian-like (technically, *fractal*) noise.
 ///@param {Real} n
 ///@param {Real} octaves how many octaves of noise will be summed together
@@ -101,7 +111,7 @@ function ___sf_smoothstep(n) {return n*n*(3-2*n);}
 ///smoothstep interpolation (perlin level)
 function ___sf_smootherstep(n) {return n*n*n*(n*(n*6-15)+10);}
 ///reverse smoothstep interpolation (inverted 1st level)
-function ___sf_reverse_smoothstep(n) {return 0.5-sin(arcsin(1-n*n)/3);}
+function ___sf_reverse_smoothstep(n) {return 0.5-sin(arcsin(1-2*n)/3);}
 ///nth smoothstep interpolation
 function ___sf_smoothstep_n(n, p) {
 	var out=0;
