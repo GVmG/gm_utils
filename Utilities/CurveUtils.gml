@@ -1,7 +1,7 @@
 /*
 		CURVE UTILITIES
 		by Raechel V.
-		version 2023.6
+		version 2025.11
 		
 		See https://github.com/GVmG/gm_utils for more info.
 */
@@ -30,7 +30,7 @@ function smoothstep_n(n, p) {
 }
 
 ///@desc Reverse of smoothstep - climbs up faster at the start and the end, and climbs slower in the middle.
-function reverse_smoothstep(n) {return 0.5-sin(arcsin(1-n*n)/3);}
+function reverse_smoothstep(n) {return 0.5-sin(arcsin(1-2*n)/3);}
 
 ///@desc Takes a number betewen two values, and returns how far betwen the two it is (0 to 1).
 function reverse_lerp(_min, _max, v) {return (v-_min)/(_max-_min);}
@@ -46,4 +46,5 @@ function pascal(a, b) {
 	}
 	
 	return out;
+
 }
